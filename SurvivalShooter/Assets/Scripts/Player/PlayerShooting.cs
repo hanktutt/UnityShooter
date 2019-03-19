@@ -7,7 +7,7 @@ public class PlayerShooting : MonoBehaviour
     public float range = 100f;
     public int maxAmmo = 20;
     private int currentAmmo;
-    public float reloadTime = 1f;
+    public float reloadTime = 3f;
     private bool isReloading = false;
 
     float timer;

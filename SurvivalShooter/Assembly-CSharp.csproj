@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\weaponswitching.cs" />
     <None Include="Assets\SurvivalShooter_Third-PartyNotice.txt" />
     <None Include="Assets\Fonts\LuckiestGuy\FontLicense.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
