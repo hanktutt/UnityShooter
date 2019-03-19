@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
-
+using System.Collections;
 public class PlayerShooting : MonoBehaviour
 {
     public int damagePerShot = 20;
     public float timeBetweenBullets = 0.15f;
     public float range = 100f;
-
+    public int maxAmmo = 20;
+    private int currentAmmo;
+    public float reloadTime = 1f;
+    private bool isReloading = false;
 
     float timer;
     Ray shootRay = new Ray();
@@ -27,9 +30,21 @@ public class PlayerShooting : MonoBehaviour
         gunLight = GetComponent<Light> ();
     }
 
+    void Start()
+    {
+        if (currentAmmo == -1)
+            currentAmmo = maxAmmo;
+    }
 
     void Update ()
     {
+        if (isReloading)
+            return;
+        if(currentAmmo <=0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
         timer += Time.deltaTime;
 
 		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
@@ -43,6 +58,14 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        Debug.Log("Reloading...");
+        yield return new WaitForSeconds(reloadTime);
+        currentAmmo = maxAmmo;
+        isReloading = false;
+    }
 
     public void DisableEffects ()
     {
