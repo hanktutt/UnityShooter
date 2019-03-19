@@ -9,6 +9,8 @@ public class PlayerShooting : MonoBehaviour
     private int currentAmmo;
     public float reloadTime = 3f;
     private bool isReloading = false;
+    public float fireRate = 0.1f;
+    private float nextTimeToFire = 0f;
 
     float timer;
     Ray shootRay = new Ray();
@@ -38,6 +40,13 @@ public class PlayerShooting : MonoBehaviour
 
     void Update ()
     {
+
+        if (Input.GetButton("Fire1")&& Time.time >= nextTimeToFire)
+        {
+            nextTimeToFire = Time.time + 1f / fireRate;
+            Shoot();
+        }
+
         if (isReloading)
             return;
         if(currentAmmo <=0)
